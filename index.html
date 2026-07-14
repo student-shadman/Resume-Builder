@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Resume Builder & Portfolio Maker</title>
+    <link rel="stylesheet" href="res.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-rocket"></i>
+                <span>ResumeBuilder Pro</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#builder" class="nav-link">Builder</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#templates" class="nav-link">Templates</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Landing Page -->
+    <section id="home" class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Build Your Dream
+                    <span class="gradient-text">Resume</span>
+                    & Portfolio
+                </h1>
+                <p class="hero-subtitle">
+                    Create ATS-optimized resumes with our AI-powered builder and convert them into stunning portfolio websites
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="showSection('builder')">
+                        <i class="fas fa-play"></i>
+                        Start Building
+                    </button>
+                    <button class="btn btn-secondary" onclick="showSection('templates')">
+                        <i class="fas fa-eye"></i>
+                        View Templates
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card card-1">
+                    <i class="fas fa-user"></i>
+                    <span>Personal Info</span>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Experience</span>
+                </div>
+                <div class="floating-card card-3">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Education</span>
+                </div>
+                <div class="floating-card card-4">
+                    <i class="fas fa-cogs"></i>
+                    <span>Skills</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Builder Section -->
+    <section id="builder" class="builder-section hidden">
+        <div class="builder-container">
+            <div class="builder-sidebar">
+                <div class="progress-indicator">
+                    <div class="progress-step active" data-step="personal">
+                        <i class="fas fa-user"></i>
+                        <span>Personal</span>
+                    </div>
+                    <div class="progress-step" data-step="experience">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Experience</span>
+                    </div>
+                    <div class="progress-step" data-step="education">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Education</span>
+                    </div>
+                    <div class="progress-step" data-step="skills">
+                        <i class="fas fa-cogs"></i>
+                        <span>Skills</span>
+                    </div>
+                </div>
+
+                <!-- ATS Score Widget -->
+                <div class="ats-widget">
+                    <h3>ATS Score</h3>
+                    <div class="ats-circle">
+                        <svg class="ats-progress" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" stroke="#e5e7eb" stroke-width="8" fill="none"/>
+                            <circle id="atsCircle" cx="50" cy="50" r="45" stroke="#10b981" stroke-width="8" fill="none" 
+                                    stroke-dasharray="283" stroke-dashoffset="283" transform="rotate(-90 50 50)"/>
+                        </svg>
+                        <div class="ats-score-text">
+                            <span id="atsScore">0</span>%
+                        </div>
+                    </div>
+                    <div class="ats-recommendations" id="atsRecommendations">
+                        <p>Complete your resume to get ATS recommendations</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="builder-main">
+                <!-- Personal Information Form -->
+                <div id="personalForm" class="form-section active">
+                    <div class="form-header">
+                        <h2>Personal Information</h2>
+                        <p>Tell us about yourself</p>
+                    </div>
+                    <form class="resume-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" placeholder="John" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" placeholder="Doe" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" placeholder="john.doe@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" placeholder="+1 (555) 123-4567" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input type="text" id="location" placeholder="New York, NY" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="linkedin">LinkedIn Profile</label>
+                                <input type="url" id="linkedin" placeholder="linkedin.com/in/johndoe">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="summary">Professional Summary</label>
+                            <textarea id="summary" rows="4" placeholder="Write a compelling professional summary that highlights your key achievements and career objectives..."></textarea>
+                            <div class="ai-assist">
+                                <button type="button" class="btn-ai" onclick="generateSummary()">
+                                    <i class="fas fa-robot"></i>
+                                    AI Assist
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="form-navigation">
+                        <button class="btn btn-primary" onclick="nextStep('experience')">
+                            Next: Experience <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Experience Form -->
+                <div id="experienceForm" class="form-section">
+                    <div class="form-header">
+                        <h2>Work Experience</h2>
+                        <p>Add your professional experience</p>
+                    </div>
+                    <div id="experienceList" class="dynamic-list">
+                        <!-- Experience items will be added here -->
+                    </div>
+                    <button class="btn btn-outline" onclick="addExperience()">
+                        <i class="fas fa-plus"></i>
+                        Add Experience
+                    </button>
+                    <div class="form-navigation">
+                        <button class="btn btn-secondary" onclick="prevStep('personal')">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <button class="btn btn-primary" onclick="nextStep('education')">
+                            Next: Education <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Education Form -->
+                <div id="educationForm" class="form-section">
+                    <div class="form-header">
+                        <h2>Education</h2>
+                        <p>Add your educational background</p>
+                    </div>
+                    <div id="educationList" class="dynamic-list">
+                        <!-- Education items will be added here -->
+                    </div>
+                    <button class="btn btn-outline" onclick="addEducation()">
+                        <i class="fas fa-plus"></i>
+                        Add Education
+                    </button>
+                    <div class="form-navigation">
+                        <button class="btn btn-secondary" onclick="prevStep('experience')">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <button class="btn btn-primary" onclick="nextStep('skills')">
+                            Next: Skills <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Skills Form -->
+                <div id="skillsForm" class="form-section">
+                    <div class="form-header">
+                        <h2>Skills & Expertise</h2>
+                        <p>Showcase your technical and soft skills</p>
+                    </div>
+                    <div class="skills-container">
+                        <div class="skill-input-group">
+                            <input type="text" id="skillInput" placeholder="Enter a skill (e.g., JavaScript, Project Management)">
+                            <select id="skillLevel">
+                                <option value="beginner">Beginner</option>
+                                <option value="intermediate">Intermediate</option>
+                                <option value="advanced">Advanced</option>
+                                <option value="expert">Expert</option>
+                            </select>
+                            <button type="button" onclick="addSkill()">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div id="skillsList" class="skills-list">
+                            <!-- Skills will be added here -->
+                        </div>
+                    </div>
+                    <div class="form-navigation">
+                        <button class="btn btn-secondary" onclick="prevStep('education')">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <button class="btn btn-primary" onclick="showSection('preview')">
+                            Preview Resume <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Preview -->
+            <div class="builder-preview">
+                <div class="preview-header">
+                    <h3>Live Preview</h3>
+                    <div class="template-selector">
+                        <select id="templateSelect" onchange="changeTemplate()">
+                            <option value="modern">Modern</option>
+                            <option value="classic">Classic</option>
+                            <option value="creative">Creative</option>
+                            <option value="minimal">Minimal</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="resume-preview" id="resumePreview">
+                    <div class="preview-placeholder">
+                        <i class="fas fa-file-alt"></i>
+                        <p>Start filling out your information to see the preview</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Templates Section -->
+    <section id="templates" class="templates-section hidden">
+        <div class="templates-container">
+            <div class="section-header">
+                <h2>Premium Templates</h2>
+                <p>Choose from our collection of ATS-optimized resume templates</p>
+            </div>
+            <div class="templates-grid">
+                <div class="template-card" data-template="modern">
+                    <div class="template-preview">
+                        <div class="template-header modern-header"></div>
+                        <div class="template-content">
+                            <div class="template-line"></div>
+                            <div class="template-line short"></div>
+                            <div class="template-line"></div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Modern Professional</h3>
+                        <p>Clean and contemporary design</p>
+                        <button class="btn btn-primary" onclick="selectTemplate('modern')">
+                            Use Template
+                        </button>
+                    </div>
+                </div>
+                <!-- More template cards... -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio-section hidden">
+        <div class="portfolio-container">
+            <div class="section-header">
+                <h2>Convert to Portfolio</h2>
+                <p>Transform your resume into a stunning portfolio website</p>
+            </div>
+            <div class="portfolio-generator">
+                <div class="portfolio-options">
+                    <div class="option-card">
+                        <i class="fas fa-palette"></i>
+                        <h3>Choose Theme</h3>
+                        <select id="portfolioTheme">
+                            <option value="dark">Dark Mode</option>
+                            <option value="light">Light Mode</option>
+                            <option value="gradient">Gradient</option>
+                        </select>
+                    </div>
+                    <div class="option-card">
+                        <i class="fas fa-layout"></i>
+                        <h3>Layout Style</h3>
+                        <select id="portfolioLayout">
+                            <option value="single">Single Page</option>
+                            <option value="multi">Multi Page</option>
+                            <option value="scroll">Scroll</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-large" onclick="generatePortfolio()">
+                    <i class="fas fa-magic"></i>
+                    Generate Portfolio
+                </button>
+            </div>
+            <div id="portfolioPreview" class="portfolio-preview hidden">
+                <!-- Portfolio preview will be generated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Export Modal -->
+    <div id="exportModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Export Resume</h3>
+                <button class="modal-close" onclick="closeModal('exportModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="export-options">
+                    <button class="export-btn" onclick="exportToPDF()">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Export as PDF</span>
+                    </button>
+                    <button class="export-btn" onclick="exportToWord()">
+                        <i class="fas fa-file-word"></i>
+                        <span>Export as Word</span>
+                    </button>
+                    <button class="export-btn" onclick="exportToHTML()">
+                        <i class="fas fa-code"></i>
+                        <span>Export as HTML</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Generating your resume...</p>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab-container">
+        <button class="fab" onclick="showModal('exportModal')">
+            <i class="fas fa-download"></i>
+        </button>
+        <div class="fab-menu hidden">
+            <button class="fab-item" onclick="saveProgress()" title="Save Progress">
+                <i class="fas fa-save"></i>
+            </button>
+            <button class="fab-item" onclick="loadProgress()" title="Load Saved">
+                <i class="fas fa-folder-open"></i>
+            </button>
+            <button class="fab-item" onclick="resetForm()" title="Reset Form">
+                <i class="fas fa-refresh"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="res.js"></script>
+</body>
+</html>
